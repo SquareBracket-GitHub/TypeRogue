@@ -6,10 +6,10 @@
 - Version: 0.1.0
 - Platform: Firefox for Desktop
 - Category: Games & Entertainment
-- Source repository: TODO — public repository URL
-- Support website: TODO — issue tracker or support page URL
-- Support email: TODO — address monitored by the publisher
-- Privacy notice: TODO — public URL for `PRIVACY.md`
+- Source repository: https://github.com/SquareBracket-GitHub/TypeRogue
+- Support website: https://github.com/SquareBracket-GitHub/TypeRogue/issues
+- Support email: eomtaegyun08@gmail.com
+- Privacy notice: https://github.com/SquareBracket-GitHub/TypeRogue/blob/main/PRIVACY.md
 - License: Mozilla Public License 2.0 (`MPL-2.0`)
 - Copyright holder: New Potato
 
@@ -59,4 +59,4 @@ TypeRogue는 비공식 팬 도구이며 PokeRogue, Pokémon, Nintendo, Game Frea
 
 ## CLI metadata
 
-`docs/amo-metadata.template.json` contains the localized summary, category, and reviewer-note skeleton accepted by `web-ext sign --amo-metadata`. Replace every `TODO_*` value only after the publisher information and license are final.
+`docs/amo-metadata.template.json` contains the finalized localized summary, category, support information, and reviewer-note metadata accepted by `web-ext sign --amo-metadata`.
