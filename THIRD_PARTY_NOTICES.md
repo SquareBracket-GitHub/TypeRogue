@@ -19,3 +19,13 @@ Pokémon 및 관련 명칭은 각 권리자의 상표입니다. TypeRogue는 포
 ## 스토어 스크린샷
 
 `amo-assets/screenshot-battle-ko.png`에는 확장의 호환성과 실제 출력 모습을 설명하기 위한 PokeRogue 게임 화면이 포함됩니다. 이 이미지는 확장 패키지의 UI 자산으로 사용되지 않으며 재사용 가능한 게임 자산으로 배포하지 않습니다.
+
+## Galmuri11 글꼴
+
+패널 UI에는 Minseo Lee가 제작한 Galmuri11 및 Galmuri11 Bold 글꼴을 사용합니다.
+글꼴은 SIL Open Font License 1.1에 따라 배포되며, 라이선스 원문은
+`src/fonts/OFL-Galmuri.md`에 포함되어 있습니다.
+
+- 프로젝트: https://github.com/quiple/galmuri
+- Copyright (c) 2019-2023 Minseo Lee
+- Reserved Font Name: Galmuri

@@ -18,6 +18,10 @@ assert.equal(manifest.content_scripts[1].world, "ISOLATED");
 assert.deepEqual(manifest.content_scripts[1].css, ["src/overlay.css"]);
 assert.ok(manifest.content_scripts[1].js.includes("src/overlay-ui.js"));
 assert.ok(manifest.content_scripts[1].js.includes("src/manual-selection.js"));
+assert.deepEqual(manifest.web_accessible_resources, [{
+  resources: ["src/fonts/Galmuri11.woff2", "src/fonts/Galmuri11-Bold.woff2"],
+  matches: ["https://pokerogue.net/*"]
+}]);
 
 const bridgeCore = fs.readFileSync(new URL("../src/bridge-core.js", import.meta.url), "utf8");
 assert.match(bridgeCore, /schemaVersion/);

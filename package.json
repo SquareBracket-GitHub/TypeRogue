@@ -2,7 +2,7 @@
   "name": "typerogue",
   "description": "PokeRogue 방어 타입 상성 도우미",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MPL-2.0",
   "type": "module",
   "scripts": {

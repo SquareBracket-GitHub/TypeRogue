@@ -7,65 +7,144 @@
   const manualSelection = globalScope.PokeRogueManualSelection;
 
   const SHADOW_STYLES = `
-    :host { color-scheme: dark; }
-    .panel, .panel * { box-sizing: border-box; }
+    @font-face {
+      font-family: "TypeRogue Galmuri"; font-style: normal; font-weight: 400; font-display: swap;
+      src: url("__GALMURI11_REGULAR__") format("woff2");
+    }
+    @font-face {
+      font-family: "TypeRogue Galmuri"; font-style: normal; font-weight: 700; font-display: swap;
+      src: url("__GALMURI11_BOLD__") format("woff2");
+    }
+    :host {
+      --pr-ink: #17131f;
+      --pr-panel: #352d40;
+      --pr-panel-surface: #352d40;
+      --pr-section-surface: #393143;
+      --pr-row-surface: #292330;
+      --pr-panel-deep: #292333;
+      --pr-line: #655b70;
+      --pr-text: #fffaff;
+      --pr-muted: #c8c0cf;
+      --pr-red: #b52d2d;
+      --pr-red-dark: #651d24;
+      --pr-enemy: #dc4542;
+      --pr-enemy-dark: #7b222a;
+      --pr-player: #55b3ca;
+      --pr-player-dark: #276576;
+      --pr-weak: #ff9a89;
+      --pr-resist: #78cde2;
+      --pr-immune: #bdb4c4;
+      --pr-panel-width: 320px;
+      --pr-panel-width-compact: 248px;
+      color-scheme: dark;
+    }
+    .panel-frame, .panel, .panel * { box-sizing: border-box; }
+    .panel-frame {
+      position: relative; width: min(var(--pr-panel-width), calc(100vw - 16px)); padding: 0;
+      background: transparent; border: 4px solid var(--pr-red);
+      clip-path: polygon(5px 0, calc(100% - 5px) 0, 100% 5px, 100% calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 0 calc(100% - 5px), 0 5px);
+      filter: drop-shadow(3px 4px 0 rgba(17, 13, 23, .72)); opacity: .55;
+      transition: opacity 120ms steps(2, end);
+    }
+    .panel-frame:hover, .panel-frame:focus-within { opacity: 1; }
     .panel {
-      all: initial; display: block; width: min(260px, calc(100vw - 16px));
-      max-height: calc(100vh - 16px); overflow: auto; overscroll-behavior: contain;
-      color: #f8fafc; background: rgba(15, 23, 42, .94); border: 1px solid #475569;
-      border-radius: 8px; box-shadow: 0 4px 14px rgba(0, 0, 0, .35);
-      font: 12px/1.25 system-ui, sans-serif;
+      all: initial; position: relative; display: block; margin: 0; width: auto;
+      max-height: calc(100vh - 28px); overflow: auto; overscroll-behavior: contain;
+      color: var(--pr-text); background: var(--pr-panel-surface); border: 3px solid var(--pr-ink);
+      border-radius: 0;
+      font: 12px/1.3 "TypeRogue Galmuri", system-ui, sans-serif;
+      scrollbar-color: #766b80 var(--pr-panel-deep); scrollbar-width: thin;
     }
     .panel-header {
-      display: flex; min-height: 30px; align-items: center; gap: 5px; padding: 5px 6px;
-      border-bottom: 1px solid #475569; cursor: grab; touch-action: none; user-select: none;
+      display: flex; min-height: 26px; align-items: center; gap: 4px; padding: 3px 5px 3px 9px;
+      background: #1d1923; border-bottom: 2px solid #0e0c12;
+      box-shadow: inset 0 -1px #4e4558; cursor: grab; touch-action: none; user-select: none;
     }
     .panel-header.dragging { cursor: grabbing; }
-    .panel-title { flex: 1; overflow: hidden; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
-    .panel-summary { color: #cbd5e1; font-size: 10px; }
+    .panel-title { flex: 1; overflow: hidden; color: #fff; font-size: 12px; font-weight: 900; letter-spacing: .3px; text-shadow: 1px 1px 0 #000; text-overflow: ellipsis; white-space: nowrap; }
+    .panel-title::before { content: ""; display: inline-block; width: 4px; height: 8px; margin-right: 5px; background: var(--pr-red); box-shadow: 0 2px 0 var(--pr-red-dark); vertical-align: -1px; }
+    .panel-summary { color: #aaa1b2; font-size: 10px; white-space: nowrap; }
     .panel-button {
-      appearance: none; min-width: 24px; min-height: 22px; padding: 2px 5px; color: #f8fafc;
-      background: #334155; border: 1px solid #64748b; border-radius: 4px; font: 700 10px/1 system-ui, sans-serif;
-      cursor: pointer;
+      appearance: none; min-width: 22px; min-height: 18px; padding: 1px 4px; color: var(--pr-text);
+      background: #3d3547; border: 1px solid #0e0c12; border-radius: 0;
+      box-shadow: inset 0 0 0 1px #5e5368, 1px 1px 0 #09070b; font: 800 10px/1 "TypeRogue Galmuri", system-ui, sans-serif;
+      cursor: pointer; text-shadow: 1px 1px 0 #17131f; white-space: nowrap;
     }
-    .panel-button:focus-visible { outline: 2px solid #93c5fd; outline-offset: 1px; }
+    .panel-button:hover { background: #65576f; }
+    .panel-button:active { transform: translate(1px, 1px); box-shadow: inset 0 0 0 1px #73677e; }
+    .panel-button:focus-visible { outline: 2px solid #fff4d6; outline-offset: 2px; }
     .panel-content[hidden] { display: none; }
     .panel.collapsed { width: auto; min-width: 190px; overflow: hidden; }
+    .panel-frame:has(.panel.collapsed) { width: auto; }
     .panel.collapsed .panel-header { border-bottom: 0; }
-    .detection-status { margin: 0; padding: 6px 7px; color: #cbd5e1; font-size: 11px; }
-    .detection-status.failed { color: #fecaca; background: rgba(127, 29, 29, .35); }
+    .detection-status { margin: 0; padding: 7px 9px; color: var(--pr-muted); background: var(--pr-panel-deep); border-bottom: 1px solid var(--pr-line); font-size: 11px; }
+    .detection-status.failed { color: #ffe1d2; background: #602830; border-bottom-color: #9e3b39; }
     .manual-actions { display: flex; gap: 4px; padding: 0 7px 7px; }
-    .manual-search { display: grid; gap: 5px; padding: 7px; border-top: 1px solid #475569; }
-    .manual-label { color: #e2e8f0; font-weight: 700; }
-    .manual-input { min-width: 0; padding: 5px; color: #0f172a; background: #fff; border: 0; border-radius: 3px; font: 12px/1.2 system-ui, sans-serif; }
+    .manual-search { display: grid; gap: 6px; padding: 8px; background: var(--pr-panel-deep); border-top: 2px solid var(--pr-ink); }
+    .manual-label { color: var(--pr-text); font-weight: 800; }
+    .manual-input { min-width: 0; padding: 6px; color: #241e2b; background: #f7f1ed; border: 2px solid var(--pr-ink); border-radius: 1px; box-shadow: inset 0 0 0 1px #aaa1ad; font: 12px/1.2 "TypeRogue Galmuri", system-ui, sans-serif; }
     .search-results { display: grid; gap: 3px; max-height: 150px; overflow: auto; }
-    .search-result { display: block; width: 100%; padding: 5px; color: #f8fafc; background: #334155; border: 1px solid #64748b; border-radius: 3px; text-align: left; cursor: pointer; }
-    .search-result small { display: block; color: #cbd5e1; }
-    .side { padding: 7px; }
-    .side + .side { border-top: 1px solid #475569; }
-    .side-title { margin: 0 0 5px; color: #cbd5e1; font: 700 11px/1 system-ui, sans-serif; }
-    .empty { margin: 0; color: #94a3b8; font: 12px/1.25 system-ui, sans-serif; }
-    .pokemon + .pokemon { margin-top: 7px; padding-top: 7px; border-top: 1px solid #334155; }
-    .identity { display: flex; align-items: baseline; gap: 5px; min-width: 0; }
-    .name { overflow: hidden; color: #fff; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
-    .current-types { flex: none; color: #cbd5e1; font-size: 10px; }
-    .matchups { display: grid; gap: 3px; margin-top: 5px; }
-    .matchup { display: grid; grid-template-columns: 34px minmax(0, 1fr); align-items: center; gap: 4px; }
-    .multiplier { font-weight: 800; text-align: right; }
-    .m4, .m2 { color: #fda4af; } .m05, .m025 { color: #93c5fd; } .m0 { color: #cbd5e1; }
-    .type-list { display: flex; flex-wrap: wrap; gap: 3px; min-width: 0; }
-    .type-badge { display: inline-flex; align-items: center; gap: 2px; min-width: 0; }
-    .type-icon {
-      display: inline-grid; width: 15px; height: 15px; place-items: center; flex: none;
-      border: 1px solid rgba(255,255,255,.65); border-radius: 50%; color: #0f172a;
-      font: 800 8px/1 system-ui, sans-serif;
+    .search-result { display: block; width: 100%; padding: 6px 7px; color: var(--pr-text); background: #4a4055; border: 2px solid var(--pr-ink); border-radius: 1px; text-align: left; cursor: pointer; }
+    .search-result:hover, .search-result:focus-visible { background: var(--pr-red); outline: none; }
+    .search-result small { display: block; color: #d6cedb; }
+    .side {
+      margin: 5px; padding: 8px 8px 9px;
+      background: var(--pr-section-surface); border: 2px solid var(--pr-ink);
+      box-shadow: inset 0 0 0 1px #554b5e, 2px 2px 0 #211b28;
     }
-    .type-name { color: #e2e8f0; font-size: 10px; }
+    .side + .side { margin-top: 8px; }
+    .side-title { margin: -8px -8px 7px; padding: 5px 8px 4px 14px; color: #eee9f1; background: #292330; border-bottom: 2px solid var(--pr-ink); box-shadow: inset 0 -1px #5e5367; font: 800 12px/1 "TypeRogue Galmuri", system-ui, sans-serif; letter-spacing: .4px; position: relative; }
+    .side-title::before { content: ""; position: absolute; left: 7px; top: 6px; width: 4px; height: 7px; background: var(--pr-enemy); box-shadow: 0 2px 0 var(--pr-enemy-dark); }
+    .side-player .side-title::before { background: var(--pr-player); box-shadow: 0 2px 0 var(--pr-player-dark); }
+    .empty { margin: 0; color: #aba2b2; font: 12px/1.25 "TypeRogue Galmuri", system-ui, sans-serif; }
+    .pokemon + .pokemon { margin-top: 8px; padding-top: 8px; border-top: 2px solid #241e2b; box-shadow: inset 0 1px #574d60; }
+    .identity {
+      display: flex; min-width: 0; min-height: 24px; align-items: center; gap: 6px;
+      margin: 0 -2px; padding: 3px 6px 3px 7px;
+      background: #2b2533; border: 2px solid #17131f;
+      box-shadow: inset 0 0 0 1px #554b5e, 2px 2px 0 #211b28;
+      clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
+    }
+    .name { flex: 0 1 auto; min-width: 0; overflow: hidden; color: #fff; font-size: 12px; font-weight: 900; letter-spacing: .3px; text-shadow: 1px 1px 0 #000; text-overflow: ellipsis; white-space: nowrap; }
+    .current-types { flex: 0 1 auto; min-width: 0; max-width: 46%; overflow: hidden; color: #d8d0dc; font-size: 10px; font-weight: 800; text-overflow: ellipsis; text-shadow: 1px 1px 0 #17131f; white-space: nowrap; }
+    .matchups { display: grid; gap: 2px; margin-top: 7px; }
+    .matchup {
+      display: grid; min-height: 20px; grid-template-columns: 38px minmax(0, 1fr); align-items: center; gap: 5px;
+      padding: 2px 4px 2px 0; background: var(--pr-row-surface); border-bottom: 1px solid #4c4255;
+    }
+    .matchup:last-child { border-bottom-color: transparent; }
+    .multiplier {
+      align-self: stretch; display: grid; place-items: center; padding: 0 4px;
+      background: #27212e; border-right: 2px solid #17131f;
+      font-size: 10px; font-weight: 900; text-align: center; text-shadow: 1px 1px 0 #000;
+    }
+    .m4, .m2 { color: var(--pr-weak); } .m05, .m025 { color: var(--pr-resist); } .m0 { color: var(--pr-immune); }
+    .type-list { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 6px; min-width: 0; padding: 1px 0; }
+    .type-badge { display: inline-flex; min-width: 0; align-items: center; gap: 3px; white-space: nowrap; }
+    .type-icon {
+      display: inline-grid; width: 16px; height: 16px; place-items: center; flex: none;
+      padding-bottom: 1px;
+      border: 1px solid rgba(255,255,255,.82); border-radius: 50%; color: #17131f;
+      box-shadow: 0 0 0 1px #17131f, 1px 1px 0 #0b090d;
+      font: 900 8px/1 "TypeRogue Galmuri", system-ui, sans-serif; text-align: center;
+    }
+    .type-name { color: #f1ecf3; font-size: 10px; font-weight: 700; line-height: 16px; text-shadow: 1px 1px 0 #17131f; }
     @media (max-width: 520px), (max-height: 420px) {
-      .panel { width: min(220px, calc(100vw - 8px)); max-height: calc(100vh - 8px); }
-      .side { padding: 5px; } .type-name { display: none; }
+      .panel-frame { width: min(var(--pr-panel-width-compact), calc(100vw - 8px)); }
+      .panel { max-height: calc(100vh - 20px); }
+      .side { padding: 6px; }
+      .side-title { margin: -6px -6px 6px; }
+      .type-name { display: none; }
     }
   `;
+
+  function resolveShadowStyles() {
+    const runtime = globalScope.browser?.runtime ?? globalScope.chrome?.runtime;
+    const assetUrl = path => runtime?.getURL?.(path) ?? path;
+    return SHADOW_STYLES
+      .replace("__GALMURI11_REGULAR__", assetUrl("src/fonts/Galmuri11.woff2"))
+      .replace("__GALMURI11_BOLD__", assetUrl("src/fonts/Galmuri11-Bold.woff2"));
+  }
 
   function buildPokemonView(snapshot) {
     const typeIds = pokemonData.resolveTypes(snapshot);
@@ -311,7 +390,8 @@
       host.setAttribute("aria-label", "포켓몬 방어 상성");
       const shadow = host.shadowRoot ?? host.attachShadow({ mode: "open" });
       if (!shadow.firstChild) {
-        shadow.append(element(documentRef, "style", "", SHADOW_STYLES));
+        shadow.append(element(documentRef, "style", "", resolveShadowStyles()));
+        const panelFrame = element(documentRef, "div", "panel-frame");
         panel = element(documentRef, "div", "panel");
         header = element(documentRef, "header", "panel-header");
         header.append(element(documentRef, "span", "panel-title", "타입 상성"));
@@ -326,7 +406,8 @@
         header.append(summary, collapseButton, resetButton);
         content = element(documentRef, "div", "panel-content");
         panel.append(header, content);
-        shadow.append(panel);
+        panelFrame.append(panel);
+        shadow.append(panelFrame);
         header.addEventListener("pointerdown", startDrag);
         header.addEventListener("pointermove", moveDrag);
         header.addEventListener("pointerup", endDrag);
