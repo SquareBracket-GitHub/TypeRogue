@@ -1,0 +1,22 @@
+{
+  "summary": {
+    "en-US": "Shows defensive type matchups for both sides during PokeRogue battles.",
+    "ko": "PokeRogue 전투에서 양쪽 포켓몬의 방어 타입 상성을 표시합니다."
+  },
+  "categories": [
+    "games-entertainment"
+  ],
+  "homepage": {
+    "en-US": "TODO_PUBLIC_PROJECT_URL"
+  },
+  "support_email": {
+    "en-US": "TODO_SUPPORT_EMAIL"
+  },
+  "support_url": {
+    "en-US": "TODO_PUBLIC_SUPPORT_URL"
+  },
+  "version": {
+    "license": "MPL-2.0",
+    "approval_notes": "Reviewer instructions are included in docs/amo-review.md. The extension transmits no user data and uses no external API."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "typerogue",
+  "description": "PokeRogue 방어 타입 상성 도우미",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MPL-2.0",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/bridge-core.test.mjs && node tests/type-data.test.mjs && node tests/manual-selection.test.mjs && node tests/overlay-ui.test.mjs && node tests/realtime-update.test.mjs && node tests/settings.test.mjs && node tests/manifest.test.mjs && node tests/security.test.mjs",
+    "build": "node scripts/build.mjs",
+    "amo:check": "node scripts/amo-check.mjs",
+    "amo:package": "npm run amo:check && npm run package",
+    "package": "npm run build && npx --yes web-ext@latest build --source-dir dist --overwrite-dest"
+  }
+}

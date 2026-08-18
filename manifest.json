@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "TypeRogue",
+  "version": "0.1.0",
+  "description": "PokeRogue 전투 중 아군과 상대 포켓몬의 방어 타입 상성을 표시합니다.",
+  "icons": {
+    "48": "icons/typerogue-48.png",
+    "96": "icons/typerogue-96.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://pokerogue.net/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://pokerogue.net/*"
+      ],
+      "js": [
+        "src/type-data.js",
+        "src/pokemon-data.js",
+        "src/bridge-core.js",
+        "src/page-bridge.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://pokerogue.net/*"
+      ],
+      "js": [
+        "src/build-config.js",
+        "src/logger.js",
+        "src/settings.js",
+        "src/type-data.js",
+        "src/pokemon-data.js",
+        "src/manual-selection.js",
+        "src/overlay-ui.js",
+        "src/content-script.js"
+      ],
+      "css": [
+        "src/overlay.css"
+      ],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "typerogue@potato.new",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  }
+}

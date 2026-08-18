@@ -1,0 +1,31 @@
+#pokerogue-type-helper-root {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  z-index: 2147483647;
+  box-sizing: border-box;
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 16px);
+  pointer-events: auto;
+  contain: layout style paint;
+  isolation: isolate;
+}
+
+#pokerogue-type-helper-root *,
+#pokerogue-type-helper-root *::before,
+#pokerogue-type-helper-root *::after {
+  box-sizing: border-box;
+}
+
+#pokerogue-type-helper-root[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 520px), (max-height: 420px) {
+  #pokerogue-type-helper-root {
+    top: 4px;
+    right: 4px;
+    max-width: calc(100vw - 8px);
+    max-height: calc(100vh - 8px);
+  }
+}

@@ -1,0 +1,22 @@
+# Local planning and implementation notes
+*.txt
+
+# Dependencies
+node_modules/
+
+# Generated extension builds
+dist/
+web-ext-artifacts/
+
+# Downloaded research artifacts
+.research/
+
+# Local environment files
+.env
+.env.*
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
