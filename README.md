@@ -19,14 +19,19 @@ A Firefox extension that displays defensive type matchups for your Pokémon and 
 
 TypeRogue 0.1.0 requires Firefox 142 or later.
 
-### Release package
+### Mozilla Add-ons (Recommended)
+
+1. Visit the [TypeRogue page on Mozilla Add-ons](https://addons.mozilla.org/ko/firefox/addon/typerogue/) in Firefox.
+2. Click **Add to Firefox** and approve the installation prompt.
+
+### Temporary installation from a release package
 
 1. Extract the release `.zip` file.
 2. Open `about:debugging#/runtime/this-firefox` in Firefox.
 3. Click **Load Temporary Add-on**.
 4. Select `manifest.json` from the extracted directory.
 
-A temporary add-on is removed when Firefox closes. Distribution as a permanently installed add-on requires signing by Mozilla Add-ons.
+A temporary add-on is removed when Firefox closes.
 
 ### Temporary installation from source
 

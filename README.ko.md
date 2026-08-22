@@ -19,14 +19,19 @@ PokeRogue 전투 화면에서 아군과 상대 포켓몬의 방어 타입 상성
 
 TypeRogue 0.1.0은 Firefox 142 이상을 대상으로 합니다.
 
-### 배포 패키지
+### Mozilla Add-ons에서 설치 (권장)
+
+1. Firefox에서 [Mozilla Add-ons의 TypeRogue 페이지](https://addons.mozilla.org/ko/firefox/addon/typerogue/)에 접속합니다.
+2. **Firefox에 추가**를 누르고 설치 확인 창에서 승인합니다.
+
+### 배포 패키지에서 임시 설치
 
 1. 배포된 `.zip` 파일의 압축을 풉니다.
 2. Firefox에서 `about:debugging#/runtime/this-firefox`를 엽니다.
 3. **임시 부가 기능 로드**를 누릅니다.
 4. 압축을 푼 폴더의 `manifest.json`을 선택합니다.
 
-임시로 로드한 확장은 Firefox를 종료하면 제거됩니다. 일반 사용자에게 영구 배포하려면 Mozilla Add-ons의 서명이 필요합니다.
+임시로 로드한 확장은 Firefox를 종료하면 제거됩니다.
 
 ### 소스에서 임시 로드
 
