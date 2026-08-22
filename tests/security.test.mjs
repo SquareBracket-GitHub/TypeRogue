@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 const manifest = JSON.parse(fs.readFileSync("manifest.json", "utf8"));
+const chromeManifest = JSON.parse(fs.readFileSync("manifest.chrome.json", "utf8"));
 const runtimeSources = [
   "src/bridge-core.js",
   "src/page-bridge.js",
@@ -19,6 +20,9 @@ const contentScript = fs.readFileSync("src/content-script.js", "utf8");
 assert.deepEqual(manifest.permissions, ["storage"]);
 assert.deepEqual(manifest.host_permissions, ["https://pokerogue.net/*"]);
 assert.deepEqual(manifest.browser_specific_settings.gecko.data_collection_permissions.required, ["none"]);
+assert.deepEqual(chromeManifest.permissions, ["storage"]);
+assert.deepEqual(chromeManifest.host_permissions, ["https://pokerogue.net/*"]);
+assert.equal(chromeManifest.browser_specific_settings, undefined);
 
 assert.doesNotMatch(runtimeSources, /\b(?:XMLHttpRequest|WebSocket|EventSource|sendBeacon)\b/);
 assert.doesNotMatch(pageBridge, /\b(?:keydown|keyup|keypress)\b/);

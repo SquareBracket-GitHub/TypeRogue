@@ -17,7 +17,7 @@ PokeRogue 전투 화면에서 아군과 상대 포켓몬의 방어 타입 상성
 
 ## 설치
 
-TypeRogue 0.1.0은 Firefox 142 이상을 대상으로 합니다.
+TypeRogue는 Firefox 142 이상을 지원하며 Chrome 호환 빌드도 제공합니다.
 
 ### Mozilla Add-ons에서 설치 (권장)
 
@@ -40,7 +40,15 @@ npm.cmd test
 npm.cmd run build
 ```
 
-그다음 `about:debugging#/runtime/this-firefox`에서 `dist/manifest.json`을 선택합니다.
+그다음 `about:debugging#/runtime/this-firefox`에서 `dist/firefox/manifest.json`을 선택합니다.
+
+### Chrome 개발용 설치
+
+```powershell
+npm.cmd run build:chrome
+```
+
+Chrome에서 `chrome://extensions`를 열고 **개발자 모드**를 켠 다음 **압축해제된 확장 프로그램을 로드합니다**를 눌러 `dist/chrome`을 선택합니다.
 
 ## 사용법
 
@@ -86,7 +94,9 @@ npm.cmd test
 npm.cmd run build
 npm.cmd run package
 npm.cmd run amo:check
+npm.cmd run cws:check
 ```
 
-`build`는 `dist/`를 만들고, `package`는 `web-ext-artifacts/`에 제출용 ZIP을 만듭니다.
+`build`는 `dist/firefox/`와 `dist/chrome/`을 만들고, `package`는 `web-ext-artifacts/` 아래에 브라우저별 제출용 ZIP을 만듭니다.
 `amo:check`는 원격 코드나 미확정 배포자 정보가 남아 있으면 AMO 제출을 차단합니다.
+`cws:check`는 Chrome 웹 스토어 패키징 전에 Chrome manifest, 권한, 개인정보 고지와 런타임 코드를 검사합니다.

@@ -2,11 +2,21 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 
 const manifest = JSON.parse(fs.readFileSync(new URL("../manifest.json", import.meta.url), "utf8"));
+const chromeManifest = JSON.parse(fs.readFileSync(new URL("../manifest.chrome.json", import.meta.url), "utf8"));
 assert.equal(manifest.manifest_version, 3);
 assert.deepEqual(manifest.permissions, ["storage"]);
 assert.deepEqual(manifest.host_permissions, ["https://pokerogue.net/*"]);
 assert.equal(manifest.content_scripts.length, 2);
 assert.equal(manifest.browser_specific_settings.gecko.id, "typerogue@potato.new");
+assert.equal(chromeManifest.minimum_chrome_version, "111");
+assert.equal(chromeManifest.browser_specific_settings, undefined);
+assert.deepEqual(chromeManifest.permissions, manifest.permissions);
+assert.deepEqual(chromeManifest.host_permissions, manifest.host_permissions);
+assert.deepEqual(chromeManifest.web_accessible_resources, manifest.web_accessible_resources);
+assert.deepEqual(chromeManifest.content_scripts[0].js, ["src/bridge-core.js", "src/page-bridge.js"]);
+assert.deepEqual(chromeManifest.content_scripts[1].js, ["src/isolated-bundle.js"]);
+assert.equal(chromeManifest.content_scripts[0].world, "MAIN");
+assert.equal(chromeManifest.content_scripts[1].world, "ISOLATED");
 
 for (const script of manifest.content_scripts) {
   assert.deepEqual(script.matches, ["https://pokerogue.net/*"]);

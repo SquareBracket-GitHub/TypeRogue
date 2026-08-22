@@ -7,6 +7,11 @@
     collapsed: false,
     debugLogging: true
   });
+  const extensionApi = globalScope.browser ?? globalScope.chrome;
+
+  if (!extensionApi?.storage?.local) {
+    throw new Error("WebExtension storage API is unavailable");
+  }
 
   function sanitize(candidate) {
     const source = candidate && typeof candidate === "object" ? candidate : {};
@@ -25,19 +30,19 @@
   }
 
   async function load() {
-    const stored = await browser.storage.local.get(STORAGE_KEY);
+    const stored = await extensionApi.storage.local.get(STORAGE_KEY);
     return sanitize({ ...DEFAULTS, ...stored[STORAGE_KEY] });
   }
 
   async function save(patch) {
     const current = await load();
     const next = sanitize({ ...current, ...patch });
-    await browser.storage.local.set({ [STORAGE_KEY]: next });
+    await extensionApi.storage.local.set({ [STORAGE_KEY]: next });
     return next;
   }
 
   async function reset() {
-    await browser.storage.local.remove(STORAGE_KEY);
+    await extensionApi.storage.local.remove(STORAGE_KEY);
     return { ...DEFAULTS };
   }
 

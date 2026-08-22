@@ -44,4 +44,8 @@ assert.equal((await settings.load()).collapsed, true);
 assert.equal((await settings.reset()).collapsed, false);
 assert.equal((await settings.load()).panelPosition, null);
 
+const chromeContext = vm.createContext({ chrome: browser, Number });
+vm.runInContext(source, chromeContext);
+assert.equal((await chromeContext.PokeRogueTypeHelperSettings.load()).collapsed, false);
+
 console.log("settings tests passed");

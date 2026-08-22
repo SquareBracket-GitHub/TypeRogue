@@ -6,10 +6,15 @@
   "license": "MPL-2.0",
   "type": "module",
   "scripts": {
-    "test": "node tests/bridge-core.test.mjs && node tests/type-data.test.mjs && node tests/manual-selection.test.mjs && node tests/overlay-ui.test.mjs && node tests/realtime-update.test.mjs && node tests/settings.test.mjs && node tests/manifest.test.mjs && node tests/security.test.mjs",
+    "test": "node tests/bridge-core.test.mjs && node tests/type-data.test.mjs && node tests/manual-selection.test.mjs && node tests/overlay-ui.test.mjs && node tests/realtime-update.test.mjs && node tests/settings.test.mjs && node tests/manifest.test.mjs && node tests/security.test.mjs && node tests/build.test.mjs",
     "build": "node scripts/build.mjs",
+    "build:firefox": "node scripts/build.mjs --browser=firefox",
+    "build:chrome": "node scripts/build.mjs --browser=chrome",
     "amo:check": "node scripts/amo-check.mjs",
-    "amo:package": "npm run amo:check && npm run package",
-    "package": "npm run build && npx --yes web-ext@latest build --source-dir dist --overwrite-dest"
+    "cws:check": "node scripts/cws-check.mjs",
+    "amo:package": "npm run amo:check && npm run package:firefox",
+    "package": "npm run package:firefox && npm run package:chrome",
+    "package:firefox": "npm run build:firefox && npx --yes web-ext@latest build --source-dir dist/firefox --artifacts-dir web-ext-artifacts/firefox --overwrite-dest",
+    "package:chrome": "npm run cws:check && npm run build:chrome && npx --yes web-ext@latest build --source-dir dist/chrome --artifacts-dir web-ext-artifacts/chrome --overwrite-dest"
   }
 }

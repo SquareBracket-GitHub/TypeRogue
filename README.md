@@ -17,7 +17,7 @@ A Firefox extension that displays defensive type matchups for your Pokémon and 
 
 ## Installation
 
-TypeRogue 0.1.0 requires Firefox 142 or later.
+TypeRogue requires Firefox 142 or later. A Chrome-compatible build is also available.
 
 ### Mozilla Add-ons (Recommended)
 
@@ -40,7 +40,15 @@ npm.cmd test
 npm.cmd run build
 ```
 
-Then select `dist/manifest.json` from `about:debugging#/runtime/this-firefox`.
+Then select `dist/firefox/manifest.json` from `about:debugging#/runtime/this-firefox`.
+
+### Chrome development installation
+
+```powershell
+npm.cmd run build:chrome
+```
+
+Open `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, and select `dist/chrome`.
 
 ## Usage
 
@@ -86,7 +94,9 @@ npm.cmd test
 npm.cmd run build
 npm.cmd run package
 npm.cmd run amo:check
+npm.cmd run cws:check
 ```
 
-`build` creates `dist/`. `package` creates a submission-ready ZIP in `web-ext-artifacts/`.
+`build` creates `dist/firefox/` and `dist/chrome/`. `package` creates browser-specific ZIP files under `web-ext-artifacts/`.
 `amo:check` blocks AMO submission while remote code or unfinished publisher metadata remains.
+`cws:check` checks the Chrome manifest, permissions, privacy disclosure, and runtime code before Chrome Web Store packaging.

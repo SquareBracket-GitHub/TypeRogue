@@ -3,6 +3,7 @@
 
   const MESSAGE_SOURCE = "pokerogue-type-helper-page";
   const POLL_INTERVAL_MS = 250;
+  const GAME_OBSERVER_TIMEOUT_MS = 120000;
   const core = globalThis.PokeRogueBridgeCore;
   let scene = null;
   let previousState = null;
@@ -52,11 +53,9 @@
   function isPokeRogueGame(value) {
     try {
       const signature = readGameSignature(value);
-      return signature?.constructorName === "Game"
-        && signature.parentValue === "app"
-        && signature.width === 1920
-        && signature.height === 1080
-        && signature.hasSceneManager;
+      return signature?.hasSceneManager === true
+        && (signature.parentValue === "app"
+          || (signature.width === 1920 && signature.height === 1080));
     } catch {
       return false;
     }
@@ -133,7 +132,7 @@
   }
 
   restoreGameBindObserver = installGameBindObserver();
-  gameBindObserverTimeout = window.setTimeout(clearGameBindObserver, 15000);
+  gameBindObserverTimeout = window.setTimeout(clearGameBindObserver, GAME_OBSERVER_TIMEOUT_MS);
   publishStateIfChanged();
   window.setInterval(publishStateIfChanged, POLL_INTERVAL_MS);
   window.addEventListener("pagehide", () => {
