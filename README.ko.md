@@ -2,6 +2,9 @@
 
 [English](README.md) | 한국어
 
+[![Chrome 웹 스토어에서 설치](https://img.shields.io/badge/Chrome_Web_Store-Install-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/flgokcgmagjelhpoadobjoddddopobdm)
+[![Firefox 부가 기능 설치](https://img.shields.io/badge/Firefox_Add--ons-Install-FF7139?logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/ko/firefox/addon/typerogue/)
+
 PokeRogue 전투 화면에서 아군과 상대 포켓몬의 방어 타입 상성을 바로 보여 주는 Chrome 및 Firefox 브라우저 확장입니다.
 
 ![TypeRogue 아이콘](icons/typerogue-96.png)

@@ -2,6 +2,9 @@
 
 English | [한국어](README.ko.md)
 
+[![Available in the Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-Install-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/flgokcgmagjelhpoadobjoddddopobdm)
+[![Get the add-on for Firefox](https://img.shields.io/badge/Firefox_Add--ons-Install-FF7139?logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/ko/firefox/addon/typerogue/)
+
 A browser extension for Chrome and Firefox that displays defensive type matchups for your Pokémon and opposing Pokémon during PokeRogue battles.
 
 ![TypeRogue icon](icons/typerogue-96.png)
