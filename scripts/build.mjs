@@ -19,6 +19,7 @@ const sourceFiles = [
   "LICENSE",
   "icons/typerogue-48.png",
   "icons/typerogue-96.png",
+  "icons/typerogue-128.png",
   "src/type-data.js",
   "src/pokemon-data.js",
   "src/manual-selection.js",

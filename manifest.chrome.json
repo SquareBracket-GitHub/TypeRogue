@@ -6,7 +6,8 @@
   "minimum_chrome_version": "111",
   "icons": {
     "48": "icons/typerogue-48.png",
-    "96": "icons/typerogue-96.png"
+    "96": "icons/typerogue-96.png",
+    "128": "icons/typerogue-128.png"
   },
   "permissions": [
     "storage"

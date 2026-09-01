@@ -2,7 +2,7 @@
 
 English | [한국어](README.ko.md)
 
-A Firefox extension that displays defensive type matchups for your Pokémon and opposing Pokémon during PokeRogue battles.
+A browser extension for Chrome and Firefox that displays defensive type matchups for your Pokémon and opposing Pokémon during PokeRogue battles.
 
 ![TypeRogue icon](icons/typerogue-96.png)
 
@@ -12,14 +12,19 @@ A Firefox extension that displays defensive type matchups for your Pokémon and 
 - Groups defensive matchups by `4×`, `2×`, `0.5×`, `0.25×`, and `0×`. Neutral `1×` matchups are omitted.
 - Supports single battles, double battles, and fused Pokémon.
 - Provides manual Pokémon and form selection by Korean or English name when automatic detection fails.
-- Saves the panel position and collapsed state in Firefox local storage.
+- Saves the panel position and collapsed state in browser local storage.
 - Sends no data to the game server or any external server.
 
 ## Installation
 
-TypeRogue requires Firefox 142 or later. A Chrome-compatible build is also available.
+TypeRogue is available for Chrome and Firefox. Firefox 142 or later is required.
 
-### Mozilla Add-ons (Recommended)
+### Chrome Web Store (Recommended for Chrome)
+
+1. Visit the [TypeRogue page on the Chrome Web Store](https://chromewebstore.google.com/detail/flgokcgmagjelhpoadobjoddddopobdm) in Chrome.
+2. Click **Add to Chrome** and approve the installation prompt.
+
+### Mozilla Add-ons (Recommended for Firefox)
 
 1. Visit the [TypeRogue page on Mozilla Add-ons](https://addons.mozilla.org/ko/firefox/addon/typerogue/) in Firefox.
 2. Click **Add to Firefox** and approve the installation prompt.
@@ -53,6 +58,8 @@ Open `chrome://extensions`, enable **Developer mode**, click **Load unpacked**, 
 ## Usage
 
 Start a battle in PokeRogue. The type matchup panel appears in the upper-right corner.
+
+![TypeRogue displaying defensive type matchups during a PokeRogue battle](amo-assets/screenshot-battle-ko.png)
 
 - Move: drag the panel header.
 - Collapse or expand: click **접기** or **펼치기** in the header.

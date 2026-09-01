@@ -2,7 +2,7 @@
 
 [English](README.md) | 한국어
 
-PokeRogue 전투 화면에서 아군과 상대 포켓몬의 방어 타입 상성을 바로 보여 주는 Firefox 확장입니다.
+PokeRogue 전투 화면에서 아군과 상대 포켓몬의 방어 타입 상성을 바로 보여 주는 Chrome 및 Firefox 브라우저 확장입니다.
 
 ![TypeRogue 아이콘](icons/typerogue-96.png)
 
@@ -12,14 +12,19 @@ PokeRogue 전투 화면에서 아군과 상대 포켓몬의 방어 타입 상성
 - 공격 타입별 방어 배율을 `4×`, `2×`, `0.5×`, `0.25×`, `0×`로 나눠 표시합니다. 중립인 `1×`는 표시하지 않습니다.
 - 싱글·더블 배틀과 융합 포켓몬을 지원합니다.
 - 자동 감지에 실패하면 한국어 또는 영어 이름으로 포켓몬과 폼을 직접 고를 수 있습니다.
-- 패널 위치와 접힘 상태를 Firefox 로컬 저장소에 기억합니다.
+- 패널 위치와 접힘 상태를 브라우저 로컬 저장소에 기억합니다.
 - 게임 서버나 외부 서버로 데이터를 보내지 않습니다.
 
 ## 설치
 
-TypeRogue는 Firefox 142 이상을 지원하며 Chrome 호환 빌드도 제공합니다.
+TypeRogue는 Chrome과 Firefox에서 사용할 수 있습니다. Firefox는 142 이상이 필요합니다.
 
-### Mozilla Add-ons에서 설치 (권장)
+### Chrome 웹 스토어에서 설치 (Chrome 권장)
+
+1. Chrome에서 [Chrome 웹 스토어의 TypeRogue 페이지](https://chromewebstore.google.com/detail/flgokcgmagjelhpoadobjoddddopobdm)에 접속합니다.
+2. **Chrome에 추가**를 누르고 설치 확인 창에서 승인합니다.
+
+### Mozilla Add-ons에서 설치 (Firefox 권장)
 
 1. Firefox에서 [Mozilla Add-ons의 TypeRogue 페이지](https://addons.mozilla.org/ko/firefox/addon/typerogue/)에 접속합니다.
 2. **Firefox에 추가**를 누르고 설치 확인 창에서 승인합니다.
@@ -53,6 +58,8 @@ Chrome에서 `chrome://extensions`를 열고 **개발자 모드**를 켠 다음 
 ## 사용법
 
 PokeRogue에서 전투를 시작하면 화면 오른쪽 위에 타입 상성 패널이 나타납니다.
+
+![PokeRogue 전투에서 방어 타입 상성을 표시하는 TypeRogue](amo-assets/screenshot-battle-ko.png)
 
 - 이동: 패널 제목 부분을 마우스로 끕니다.
 - 접기·펼치기: 제목 줄의 **접기** 또는 **펼치기**를 누릅니다.

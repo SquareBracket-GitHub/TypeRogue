@@ -5,7 +5,8 @@
   "description": "PokeRogue 전투 중 아군과 상대 포켓몬의 방어 타입 상성을 표시합니다.",
   "icons": {
     "48": "icons/typerogue-48.png",
-    "96": "icons/typerogue-96.png"
+    "96": "icons/typerogue-96.png",
+    "128": "icons/typerogue-128.png"
   },
   "permissions": [
     "storage"
